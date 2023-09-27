@@ -60,7 +60,7 @@ export default function Components(props) {
                     className: classes.formControl
                   }}
                   inputProps={{
-                    placeholder: "Search",
+                    placeholder: "Buscar",
                     inputProps: {
                       "aria-label": "Search",
                       className: classes.searchInput
