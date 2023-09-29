@@ -15,6 +15,8 @@ import CardBody from "/components/Card/CardBody.js";
 import CardHeader from "/components/Card/CardHeader.js";
 
 import styles from "/styles/jss/nextjs-material-kit/components/customTabsStyle.js";
+import { Button } from "@material-ui/core";
+import { deleteNotes } from "../../services/api/note/note";
 
 const useStyles = makeStyles(styles);
 
@@ -25,11 +27,17 @@ export default function CustomTabs(props) {
     setValue(value);
   };
   const classes = useStyles();
-  const { headerColor, plainTabs, tabs, title, rtlActive } = props;
+  const { headerColor, plainTabs, tabs, title, rtlActive, id } = props;
   const cardTitle = classNames({
     [classes.cardTitle]: true,
     [classes.cardTitleRTL]: rtlActive
   });
+  const HandlerDelete=() => {
+    deleteNotes (id) .then(() => {
+      alert(`Delete)`)
+    })
+  }
+
   return (
     <Card plain={plainTabs}>
       <CardHeader color={headerColor} plain={plainTabs}>
@@ -69,6 +77,11 @@ export default function CustomTabs(props) {
             );
           })}
         </Tabs>
+        <div>
+            <Button onClick={() => HandlerDelete()}>
+              Eliminar
+            </Button>
+          </div>
       </CardHeader>
       <CardBody>
         {tabs.map((prop, key) => {

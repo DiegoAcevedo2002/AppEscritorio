@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -16,10 +16,30 @@ import Button from "/components/CustomButtons/Button.js";
 import CustomInput from "/components/CustomInput/CustomInput.js";
 
 import styles from "/styles/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
+import { useRouter } from 'next/router'
+import { useAuth } from "../hooks/useAuth";
 
 const useStyles = makeStyles(styles);
 
 export default function SectionLogin() {
+  const router = useRouter()
+  const auth = useAuth();
+
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleSubmit = () => {
+    console.log(auth);
+
+    auth.logins(data.email, data.password).then((result) => {
+      router.push('/home');
+    }).catch((err) => {
+      alert(err)
+    });
+  }
+
   const classes = useStyles();
   return (
     <div className={classes.section}>
@@ -38,6 +58,7 @@ export default function SectionLogin() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    onChange={(e) => setData({ ...data, email: e.target.value })}
                     inputProps={{
                       type: "email",
                       endAdornment: (
@@ -53,6 +74,7 @@ export default function SectionLogin() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    onChange={(e) => setData({ ...data, password: e.target.value })}
                     inputProps={{
                       type: "password",
                       endAdornment: (
@@ -67,7 +89,7 @@ export default function SectionLogin() {
                   />
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
-                  <Button simple color="primary" size="lg">
+                  <Button onClick={() => handleSubmit()} simple color="primary" size="lg">
                   Iniciar sesión
                   </Button>
                 </CardFooter>

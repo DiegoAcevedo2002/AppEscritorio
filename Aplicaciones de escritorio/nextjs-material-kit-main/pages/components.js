@@ -83,6 +83,7 @@ export default function Components(props) {
                 <small>Creación de notas</small>
               </h3>
               {notas.map((note) => <CustomTabs
+              id={note._id}
                 headerColor="primary"
                 tabs={[
                   {
@@ -96,6 +97,7 @@ export default function Components(props) {
                   },
                 ]}
               />)}
+              
             </GridItem>
           </GridContainer>
       </div>

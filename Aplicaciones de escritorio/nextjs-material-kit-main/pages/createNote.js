@@ -17,8 +17,7 @@ import CardHeader from "/components/Card/CardHeader.js";
 import CardFooter from "/components/Card/CardFooter.js";
 import CustomInput from "/components/CustomInput/CustomInput.js";
 
-import styles from "/styles/jss/nextjs-material-kit/pages/LoginPage.js";
-
+import styles from "../styles/jss/nextjs-material-kit/pages/landingPage.js"
 //import clasname
 import classNames from "classnames";
 

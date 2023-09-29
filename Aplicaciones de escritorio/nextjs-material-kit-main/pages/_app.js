@@ -15,10 +15,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 import App from "next/app";
 import Head from "next/head";
 import "/styles/scss/nextjs-material-kit.scss?v=1.2.0";
+import { ProviderAuth } from "../hooks/useAuth";
 
 export default class MyApp extends App {
   componentDidMount() {
@@ -62,7 +63,10 @@ export default class MyApp extends App {
           />
           <title>NoteVerse</title>
         </Head>
+        <ProviderAuth>
+          
         <Component {...pageProps} />
+        </ProviderAuth>
       </React.Fragment>
     );
   }
